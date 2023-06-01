@@ -1,0 +1,27 @@
+.profile__add-button {
+   background-image: url(../../../images/Add\ Button.svg);
+   height: 50px;
+   max-width: 150px;
+   width: 100%;
+   border: 0;
+   padding: 0;
+   outline: none;
+   background-color: transparent;
+   align-self: center;
+   cursor: pointer;
+}
+
+.profile__add-button:hover {
+   opacity: 0.6;
+   transition: opacity 0.2s;
+}
+
+
+@media screen and (max-width:486px) {
+   .profile__add-button {
+      max-width: 282px;
+      background-image: url(../../../images/Add\ Button\ Tel.svg);
+      background-size: cover;
+      margin-top: 36px;
+   }
+}

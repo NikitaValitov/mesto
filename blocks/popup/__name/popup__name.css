@@ -1,0 +1,15 @@
+.popup__name {
+   margin: 0;
+   padding: 0;
+   margin-top: 47px;
+   border: 0;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+   padding-bottom: 9px;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 17px;
+}
+
+.popup__name:focus {
+   outline: 2px solid orange;
+}
