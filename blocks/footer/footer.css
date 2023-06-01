@@ -2,9 +2,16 @@
    margin: 0 auto;
    max-width: 880px;
    width: 100%;
-   padding: 69px 16px 60px;
+   padding: 69px 0 60px;
    color: #545454;
    box-sizing: border-box;
+}
+
+@media screen and (max-width:918px) {
+   .footer {
+      padding-left: 19px;
+      padding-right: 129px;
+   }
 }
 
 @media screen and (max-width:486px) {

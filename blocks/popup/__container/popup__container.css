@@ -1,4 +1,4 @@
-.popup__conteiner {
+.popup__container {
    position: relative;
    margin-right: 19px;
    margin-left: 19px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width:486px) {
-   .popup__conteiner {
+   .popup__container {
       padding: 25px 22px;
    }
 }

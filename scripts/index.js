@@ -2,11 +2,11 @@ const popUp = document.querySelector('.popup');
 const openPopUp = document.querySelector('.profile__edit-button');
 const closePopUp = document.querySelector('.popup__close');
 const savePopUp = document.querySelector('.popup__save');
-let formElement = document.querySelector('.popup__conteiner');
+let formElement = document.querySelector('.popup__container');
 let profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
-let popUpName = document.querySelector('.popup__name');
-let popUpActivity = document.querySelector('.popup__activity');
+let popUpName = document.querySelector('.popup__field_name');
+let popUpActivity = document.querySelector('.popup__field_activity');
 
 openPopUp.addEventListener('click', () => {
    popUp.classList.add('popup_opened');

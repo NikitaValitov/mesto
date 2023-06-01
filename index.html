@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="pages/index.css">
-   <link rel="stylesheet" href="style.css">
    <title>Mesto: базовая функциональность</title>
 </head>
+
 <body>
    <div class="page">
       <div class="popup">
-         <form class="popup__conteiner">
-            <h2 class="popup__text">Редактировать профиль</h2>
-            <input class="popup__name" type="text">
-            <input class="popup__activity" type="text">
-            <button type="submit" class="popup__save">Сохранить</button>
-            <button class="popup__close"></button>
-         </form>
+         <div class="popup__container">
+            <form class="popup__form" method="get">
+               <label class="popup__text">Редактировать профиль</label>
+               <input name="popup-name" class="popup__field_name" type="text">
+               <input name="popup-activity" class="popup__field_activity" type="text">
+               <button type="submit" class="popup__save">Сохранить</button>
+            </form>
+            <button class="popup__close" type="button"></button>
+         </div>
       </div>
       <header class="header">
          <div class="header__conteiner">
@@ -29,63 +32,64 @@
                <img src="images/Avatar.png" alt="аватар" class="profile__avatar">
                <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__edit-button"></button>
+                  <button class="profile__edit-button" type="button"></button>
                   <p class="profile__activity">Исследователь океана</p>
                </div>
             </div>
-            <button class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
          </section>
          <section class="elements">
-            <ul class="elements-grid">
-               <li class="elements-grid__card">
-                  <img src="images/karachaevsk.png" alt="карачаевск" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Карачаевск</h2>
-                     <button class="elements-grid__like"></button>
+            <ul class="elements__grid">
+               <li class="elements__card">
+                  <img src="images/karachaevsk.png" alt="карачаевск" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">КарачаевскКарачаевскКарачаевскКарачаевск</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
-               <li class="elements-grid__card">
-                  <img src="images/elbrus.png" alt="эльбрус" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Гора Эльбрус</h2>
-                     <button class="elements-grid__like"></button>
+               <li class="elements__card">
+                  <img src="images/elbrus.png" alt="эльбрус" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">Гора Эльбрус</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
-               <li class="elements-grid__card">
-                  <img src="images/dombai.png" alt="домбай" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Домбай</h2>
-                     <button class="elements-grid__like"></button>
+               <li class="elements__card">
+                  <img src="images/dombai.png" alt="домбай" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">Домбай</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
-               <li class="elements-grid__card">
-                  <img src="images/elbrus.png" alt="эльбрус" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Гора Эльбрус</h2>
-                     <button class="elements-grid__like"></button>
+               <li class="elements__card">
+                  <img src="images/elbrus.png" alt="эльбрус" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">Гора Эльбрус</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
-               <li class="elements-grid__card">
-                  <img src="images/dombai.png" alt="домбай" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Домбай</h2>
-                     <button class="elements-grid__like"></button>
+               <li class="elements__card">
+                  <img src="images/dombai.png" alt="домбай" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">Домбай</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
-               <li class="elements-grid__card">
-                  <img src="images/karachaevsk.png" alt="карачаевск" class="elements-grid__image">
-                  <div class="elements-grid__info">
-                     <h2 class="elements-grid__name">Карачаевск</h2>
-                     <button class="elements-grid__like"></button>
+               <li class="elements__card">
+                  <img src="images/karachaevsk.png" alt="карачаевск" class="elements__image">
+                  <div class="elements__info">
+                     <h2 class="elements__name">Карачаевск</h2>
+                     <button class="elements__like" type="button"></button>
                   </div>
                </li>
             </ul>
          </section>
       </main>
       <footer class="footer">
-         <p class="footer__copyright">&#169; 2020 Mesto Russia</p>         
+         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
    </div>
-   <script src="scripts/script.js"></script>
+   <script src="scripts/index.js"></script>
 </body>
+
 </html>

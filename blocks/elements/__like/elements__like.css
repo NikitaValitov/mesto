@@ -1,7 +1,8 @@
-.elements-grid__like {
+.elements__like {
    background-image: url(../../../images/like\ button.svg);
    height: 19px;
    width: 22px;
+   min-width: 22px;
    margin: 2px;
    border: 0;
    padding: 0px;
@@ -11,7 +12,7 @@
    cursor: pointer;
 }
 
-.elements-grid__like:hover {
+.elements__like:hover {
    opacity: 0.5;
    transition: opacity 0.2s;
 }

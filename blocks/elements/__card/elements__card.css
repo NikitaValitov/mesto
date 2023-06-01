@@ -1,4 +1,4 @@
-.elements-grid__card {
+.elements__card {
    display: flex;
    flex-direction: column;
    list-style-type: none;
