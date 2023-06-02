@@ -19,5 +19,7 @@
    .profile__name {
       font-size: 27px;
       margin-top: 26px;
+      grid-column-start: 2;
+      grid-column-end: 3;
    }
 }

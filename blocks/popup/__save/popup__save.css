@@ -20,3 +20,10 @@
    opacity: 0.8;
    transition: opacity 0.2s;
 }
+
+@media screen and (max-width:486px) {
+   .popup__save {
+      font-size: 14px;
+      padding-bottom: 14px;
+   }
+}

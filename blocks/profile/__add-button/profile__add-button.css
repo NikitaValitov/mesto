@@ -26,5 +26,6 @@
       min-width: 282px;
       background-image: url(../../../images/Add\ Button.svg);
       margin-top: 36px;
+      background-size: 16px 16px;
    }
 }
