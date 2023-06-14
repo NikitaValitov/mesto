@@ -9,13 +9,9 @@
    overflow: hidden;
 }
 
-@media screen and (max-width:767px) {
-   .profile__name {
-      font-size: 30px;
-   }
-}
 
-@media screen and (max-width:486px) {
+
+@media screen and (max-width:612px) {
    .profile__name {
       font-size: 27px;
       margin-top: 26px;

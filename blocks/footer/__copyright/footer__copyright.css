@@ -6,7 +6,7 @@
    line-height: calc(22 / 18 * 100%);
 }
 
-@media screen and (max-width:486px) {
+@media screen and (max-width:612px) {
    .footer__copyright {
       font-size: 14px;
    }
