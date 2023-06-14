@@ -6,3 +6,7 @@
    color: white;
    object-fit: cover;
 }
+
+.elements__image:hover{
+   cursor: pointer;
+}
