@@ -12,11 +12,11 @@ const popupImageName = document.querySelector('.popup__image-name');
 
 const formElementEdit = document.querySelector('.popup__form-edit');
 const formElementAdd = document.querySelector('.popup__form-add');
-let InputPopupName = document.querySelector('.popup__input_type_name');
-let InputPopupActivity = document.querySelector('.popup__input_type_activity');
+const inputPopupName = document.querySelector('.popup__input_type_name');
+const inputPopupActivity = document.querySelector('.popup__input_type_activity');
 
-let InputPopupImageName = document.querySelector('.popup__input_type_image-name');
-let InputpopupImageLink = document.querySelector('.popup__input_type_image-link');
+const inputPopupImageName = document.querySelector('.popup__input_type_image-name');
+const inputPopupImageLink = document.querySelector('.popup__input_type_image-link');
 
 let profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
@@ -32,8 +32,8 @@ function closePopup(popup) {
 
 buttonOpenPopupEdit.addEventListener('click', () => {
   openPopup(popUpEdit);
-  InputPopupName.value = profileName.textContent;
-  InputPopupActivity.value = profileActivity.textContent;
+  inputPopupName.value = profileName.textContent;
+  inputPopupActivity.value = profileActivity.textContent;
 })
 
 buttonClosePopupEdit.addEventListener('click', () => {
@@ -42,8 +42,8 @@ buttonClosePopupEdit.addEventListener('click', () => {
 
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = InputPopupName.value;
-  profileActivity.textContent = InputPopupActivity.value;
+  profileName.textContent = inputPopupName.value;
+  profileActivity.textContent = inputPopupActivity.value;
   closePopup(popUpEdit);
 }
 
@@ -140,12 +140,12 @@ initialCards.forEach(function (item) {
 
 formElementAdd.addEventListener('submit', function (e) {
   e.preventDefault();
-  const nameNewCard = InputPopupImageName.value;
-  const linkNewCard = InputpopupImageLink.value;
+  const nameNewCard = inputPopupImageName.value;
+  const linkNewCard = inputPopupImageLink.value;
   renderCard({ name: nameNewCard, link: linkNewCard }, elementsList, 'prepend');
 
-  InputPopupImageName.value = '';
-  InputpopupImageLink.value = '';
+  inputPopupImageName.value = '';
+  inputPopupImageLink.value = '';
 
   closePopup(popUpAdd);
 });  
