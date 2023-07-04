@@ -24,16 +24,41 @@ let profileActivity = document.querySelector('.profile__activity');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
+function closeOverlay(evt) {
+  if (
+    evt.currentTarget === evt.target || evt.target.classList.contains('popup__close')
+  ) {
+    closePopup(evt.currentTarget);
+  }
+}
+
+function closeByEsc(evt){
+  if (evt.key === 'Escape'){
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)
+  }
+}
+
+
+popUpEdit.addEventListener('click', closeOverlay);
+popUpAdd.addEventListener('click', closeOverlay);
+popUpImages.addEventListener('click', closeOverlay);
+
+
 buttonOpenPopupEdit.addEventListener('click', () => {
+  let event = new Event("input");
   openPopup(popUpEdit);
   inputPopupName.value = profileName.textContent;
   inputPopupActivity.value = profileActivity.textContent;
+  inputPopupName.dispatchEvent(event);
 })
 
 buttonClosePopupEdit.addEventListener('click', () => {
