@@ -18,6 +18,9 @@ const inputPopupActivity = document.querySelector('.popup__input_type_activity')
 const inputPopupImageName = document.querySelector('.popup__input_type_image-name');
 const inputPopupImageLink = document.querySelector('.popup__input_type_image-link');
 
+const span = document.querySelector('.error');
+ 
+
 let profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
 
@@ -30,7 +33,9 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
-}
+  inputPopupImageName.value = '';
+  inputPopupImageLink.value = '';
+  }
 
 function closeOverlay(evt) {
   if (
@@ -59,6 +64,9 @@ buttonOpenPopupEdit.addEventListener('click', () => {
   inputPopupName.value = profileName.textContent;
   inputPopupActivity.value = profileActivity.textContent;
   inputPopupName.dispatchEvent(event);
+  inputPopupActivity.dispatchEvent(event);
+  inputPopupImageName.dispatchEvent(event);
+  inputPopupImageLink.dispatchEvent(event);
 })
 
 buttonClosePopupEdit.addEventListener('click', () => {

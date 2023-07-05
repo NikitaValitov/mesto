@@ -5,7 +5,8 @@ function showError(inputElement, errorElement, config) {
 
 function hideError(inputElement, errorElement, config) {
    inputElement.classList.remove(config.inputErrorClass);
-   errorElement.textContent = inputElement.validationMessage;
+  /*  errorElement.textContent = inputElement.validationMessage; */
+   errorElement.textContent = '';
 }
 
 function chekInputValidity(inputElement, formElement, config) {
