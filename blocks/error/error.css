@@ -5,6 +5,6 @@
    color: red;
    display: block;
    box-sizing: border-box;
-   height: 30px;
+   min-height: 30px;
    padding-top: 5px;
 }
