@@ -6,6 +6,7 @@ const buttonOpenPopupAdd = document.querySelector('.profile__add-button');
 const buttonClosePopupEdit = document.querySelector('.popup__close-edit');
 const buttonClosePopupAdd = document.querySelector('.popup__close-add');
 const buttonClosePopupImage = document.querySelector('.popup__close-image');
+const buttonSavCard = document.querySelector('.popup__save_card');
 
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
@@ -19,10 +20,10 @@ const inputPopupImageName = document.querySelector('.popup__input_type_image-nam
 const inputPopupImageLink = document.querySelector('.popup__input_type_image-link');
 
 const span = document.querySelector('.error');
- 
 
-let profileName = document.querySelector('.profile__name');
-let profileActivity = document.querySelector('.profile__activity');
+
+const profileName = document.querySelector('.profile__name');
+const profileActivity = document.querySelector('.profile__activity');
 
 
 function openPopup(popup) {
@@ -33,9 +34,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
-  inputPopupImageName.value = '';
-  inputPopupImageLink.value = '';
-  }
+}
 
 function closeOverlay(evt) {
   if (
@@ -45,8 +44,8 @@ function closeOverlay(evt) {
   }
 }
 
-function closeByEsc(evt){
-  if (evt.key === 'Escape'){
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened)
   }
@@ -59,7 +58,7 @@ popUpImages.addEventListener('click', closeOverlay);
 
 
 buttonOpenPopupEdit.addEventListener('click', () => {
-  let event = new Event("input");
+  const event = new Event('input');
   openPopup(popUpEdit);
   inputPopupName.value = profileName.textContent;
   inputPopupActivity.value = profileActivity.textContent;
@@ -84,6 +83,18 @@ formElementEdit.addEventListener('submit', handleFormProfileSubmit);
 
 
 buttonOpenPopupAdd.addEventListener('click', () => {
+  const error = popUpAdd.querySelectorAll('.error');
+  [...error].forEach((item) => {
+    item.textContent = '';
+  })
+
+  inputPopupImageName.value = '';
+  inputPopupImageLink.value = '';
+  inputPopupImageName.classList.remove('popup__input_state_invalid')
+  inputPopupImageLink.classList.remove('popup__input_state_invalid')
+  disabledButton(buttonSavCard, config);
+  buttonSavCard
+
   openPopup(popUpAdd);
 })
 
@@ -143,7 +154,7 @@ function createCard({ name, link }) {
   cardImage.addEventListener('click', () => {
     openPopup(popUpImages);
     popupImage.src = link;
-    popupImage.alt - name;
+    popupImage.alt = name;
     popupImageName.textContent = name;
   });
   return card;
@@ -175,6 +186,7 @@ formElementAdd.addEventListener('submit', function (e) {
   e.preventDefault();
   const nameNewCard = inputPopupImageName.value;
   const linkNewCard = inputPopupImageLink.value;
+
   renderCard({ name: nameNewCard, link: linkNewCard }, elementsList, 'prepend');
 
   inputPopupImageName.value = '';
