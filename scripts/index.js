@@ -36,6 +36,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closeByEsc);
 }
 
+
 function closeOverlay(evt) {
   if (
     evt.currentTarget === evt.target || evt.target.classList.contains('popup__close')
@@ -64,8 +65,6 @@ buttonOpenPopupEdit.addEventListener('click', () => {
   inputPopupActivity.value = profileActivity.textContent;
   inputPopupName.dispatchEvent(event);
   inputPopupActivity.dispatchEvent(event);
-  inputPopupImageName.dispatchEvent(event);
-  inputPopupImageLink.dispatchEvent(event);
 })
 
 buttonClosePopupEdit.addEventListener('click', () => {
