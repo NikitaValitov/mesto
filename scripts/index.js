@@ -1,5 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { config, initialCards } from "./constants.js";
 
 const popUpEdit = document.querySelector('.popup-edit');
 const popUpAdd = document.querySelector('.popup-add');
@@ -21,9 +22,6 @@ const inputPopupActivity = document.querySelector('.popup__input_type_activity')
 
 const inputPopupImageName = document.querySelector('.popup__input_type_image-name');
 const inputPopupImageLink = document.querySelector('.popup__input_type_image-link');
-
-const span = document.querySelector('.error');
-
 
 const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
@@ -62,12 +60,11 @@ popUpImages.addEventListener('click', closeOverlay);
 
 
 buttonOpenPopupEdit.addEventListener('click', () => {
-  const event = new Event('input');
   openPopup(popUpEdit);
   inputPopupName.value = profileName.textContent;
   inputPopupActivity.value = profileActivity.textContent;
-  inputPopupName.dispatchEvent(event);
-  inputPopupActivity.dispatchEvent(event);
+  editFormValidator.enabledButton();
+  editFormValidator.resetError();
 })
 
 buttonClosePopupEdit.addEventListener('click', () => {
@@ -85,70 +82,23 @@ formElementEdit.addEventListener('submit', handleFormProfileSubmit);
 
 
 buttonOpenPopupAdd.addEventListener('click', () => {
-  const error = popUpAdd.querySelectorAll('.error');
-  [...error].forEach((item) => {
-    item.textContent = '';
-  })
-
-  inputPopupImageName.value = '';
-  inputPopupImageLink.value = '';
-  inputPopupImageName.classList.remove('popup__input_state_invalid')
-  inputPopupImageLink.classList.remove('popup__input_state_invalid')
-/*   disabledButton(buttonSavCard, config); */
-  buttonSavCard
-
+  formElementAdd.reset();
+  addFormValidator.disabledButton();
+  addFormValidator.resetError();
   openPopup(popUpAdd);
-  
+
 })
 
 buttonClosePopupAdd.addEventListener('click', () => {
   closePopup(popUpAdd);
 })
 
-
-
-export const config = {
-  formSelector: '.form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_invalid',
-  inputErrorClass: 'popup__input_state_invalid',
-}
-
 const editFormValidator = new FormValidator(config, formElementEdit);
- editFormValidator.enableValidation();
+editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(config, formElementAdd);
- addFormValidator.enableValidation(); 
+addFormValidator.enableValidation();
 
-
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 function createCard(data) {
   const cardElement = new Card(data, '#elements-template');
@@ -193,9 +143,6 @@ formElementAdd.addEventListener('submit', function (e) {
   const linkNewCard = inputPopupImageLink.value;
 
   renderCard({ name: nameNewCard, link: linkNewCard }, elementsList, 'prepend');
-
-  inputPopupImageName.value = '';
-  inputPopupImageLink.value = '';
 
   closePopup(popUpAdd);
 });  
