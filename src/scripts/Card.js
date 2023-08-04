@@ -1,11 +1,12 @@
-import { openPopupView } from "./index.js";
 
 export class Card {
-   constructor(data, templateSelector) {
+   constructor(data, templateSelector, handleCardClick) {
       this._name = data.name;
       this._link = data.link;
       this._tempateSelector = templateSelector;
+      this._handleCardClick = handleCardClick;
    }
+
    _getTemplate() {
       const cardElement = document.querySelector(this._tempateSelector).content.querySelector('.elements__card').cloneNode(true);
 
@@ -27,7 +28,6 @@ export class Card {
       return this._element;
    }
 
-   
    _handleLikeButton() {
       this._likeButton.classList.toggle('elements__like_active');
    }
@@ -36,8 +36,8 @@ export class Card {
       this._element.remove();
    }
 
-   _handleOpenPopup() {
-      openPopupView({ name: this._name, link: this._link });
+   _handleImageOpen() {
+      this._handleCardClick(this._name, this._link);
    }
    
    _setEventListeners() {
@@ -49,8 +49,9 @@ export class Card {
          this._handleDeleteButton();
       });
 
-      this._cardImage.addEventListener('click', () => {
-         this._handleOpenPopup();
-      })
+  
+      this._cardImage.addEventListener("click", () => {
+         this._handleImageOpen();
+       });
    }
 }

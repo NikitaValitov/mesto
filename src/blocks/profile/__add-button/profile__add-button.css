@@ -1,5 +1,5 @@
 .profile__add-button {
-   background-image: url(../../../images/Add\ Button.svg);
+   background-image: url(../../../images/AddButton.svg);
    background-repeat: no-repeat;
    background-position: center;
    height: 50px;
@@ -24,7 +24,7 @@
    .profile__add-button {
       max-width: 282px;
       min-width: 282px;
-      background-image: url(../../../images/Add\ Button.svg);
+      background-image: url(../../../images/AddButton.svg);
       margin-top: 36px;
       background-size: 16px 16px;
    }
