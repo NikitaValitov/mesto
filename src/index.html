@@ -28,12 +28,12 @@
          <div class="popup__container">
             <form name="popup__form-add" class="form popup__form-add" method="get" novalidate>
                <h2 class="popup__text">Новое место</h2>
-               <input name="popup-image-name" class="popup__input popup__input_type_image-name" placeholder="Название"
+               <input name="name" class="popup__input popup__input_type_image-name" placeholder="Название"
                   type="text" required minlength="2" maxlength="30">
-               <span id="popup-image-name-error" class="error"></span>
-               <input name="popup-image-link" class="popup__input popup__input_type_image-link"
+               <span id="name-error" class="error"></span>
+               <input name="link" class="popup__input popup__input_type_image-link"
                   placeholder="Ссылка на картинку" type="url" required>
-               <span id="popup-image-link-error" class="error"></span>
+               <span id="link-error" class="error"></span>
                <button type="submit" class="popup__save popup__save_card">Создать</button>
             </form>
             <button class="popup__close popup__close-add" type="button"></button>
@@ -77,7 +77,10 @@
          <img class="elements__image">
          <div class="elements__info">
             <h2 class="elements__name"></h2>
-            <button class="elements__like" type="button"></button>
+            <div class="elements__btn" type="button">
+               <button class="elements__like"></button>
+               <div class="elements__like-sum">0</div>
+            </div>
          </div>
          <button class="elements__del" type="button"></button>
       </li>

@@ -5,7 +5,8 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { config, initialCards } from "../utils/constants.js";
+import { config, configApi, initialCards } from "../utils/constants.js";
+import { Api } from '../components/Api';
 
 
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
@@ -27,59 +28,25 @@ function handleCardClick(name, link) {
 };
 
 function createCard(data) {
-  const newCard = new Card(data, '#elements-template', handleCardClick);
+  const newCard = new Card(data, '#elements-template', handleCardClick, userId, handleLikeCard);
   const cardElement = newCard.generateCard()
   return cardElement;
 }
 
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      section.addItem(createCard(data));
-    }
-  },
-  '.elements__list'
-);
-section.renderItems();
 
-const userInfo = new UserInfo({
-  nameSelector: '.profile__name',
-  activitySelector: '.profile__activity'
-});
 
 const popupWithImage = new PopupWithImage('.popup-images');
 popupWithImage.setEventListeners();
 
 
-const popupWithEditForm = new PopupWithForm('.popup-edit', (data) => {
-  userInfo.setUserInfo({
-    name: data['popup-name'],
-    activity: data['popup-activity']
-  });
-  popupWithEditForm.close()
-})
-popupWithEditForm.setEventListeners();
-
 buttonOpenPopupEdit.addEventListener('click', () => {
   const elementInfo = userInfo.getUserInfo();
   inputPopupName.value = elementInfo.name;
-  inputPopupActivity.value = elementInfo.activity;
+  inputPopupActivity.value = elementInfo.about;
   editFormValidator.enabledButton();
   editFormValidator.resetError();
   popupWithEditForm.open();
 });
-
-const popupWithAddForm = new PopupWithForm('.popup-add', (data) => {
-  const card = {
-    name: data['popup-image-name'],
-    link: data['popup-image-link']
-  };
-  section.addItem(createCard(card));
-  popupWithAddForm.close();
-})
-
-popupWithAddForm.setEventListeners();
 
 buttonOpenPopupAdd.addEventListener('click', () => {
   addFormValidator.disabledButton();
@@ -87,8 +54,94 @@ buttonOpenPopupAdd.addEventListener('click', () => {
   popupWithAddForm.open();
 });
 
+const api = new Api(configApi);
 
-/*
+let userId = null;
+
+
+// экземпляр класса управления отображением информации пользователя
+const userInfo = new UserInfo({
+  nameSelector: '.profile__name',
+  activitySelector: '.profile__activity',
+  avatarSelector: '.profile__avatar'
+});
+
+
+// экземляр классса отрисовки карточек
+const section = new Section({
+    renderer: (data, userData) => {
+      section.addItem(createCard(data, userData));
+    }
+  },
+  '.elements__list'
+);
+
+// получение данных пользователя и начальных картчоек с сервера
+Promise.all([api.getInfo(), api.getInitialCards()])
+  .then(([userData, initialCardsData]) => {
+    console.log(initialCardsData[29]);
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    section.renderItems(initialCardsData, userData);
+  })
+  .catch((err) => {
+    console.log('Ошибка при получении данных юзера и карточек: ', err);
+  })
+
+
+// попап редактрирование инфо пользщователя
+const popupWithEditForm = new PopupWithForm('.popup-edit', (data) => {
+  api
+    .editingUserInfo({
+      name: data['popup-name'],
+      about: data['popup-activity']
+    })
+    .then(() => {
+      userInfo.setUserInfo({
+        name: data['popup-name'],
+        about: data['popup-activity'],
+      })
+    })
+    .then(() => popupWithEditForm.close())
+    .catch((err) => console.log(err))
+})
+
+popupWithEditForm.setEventListeners();
+
+
+// попап добавленя карточек
+const popupWithAddForm = new PopupWithForm('.popup-add', (data) => {
+  api
+    .addNewCard({name: data.name, link: data.link})
+    .then((data) => {
+      section.addItem(createCard(data));
+      popupWithAddForm.close()
+    })
+    .catch((err) => console.log(err))
+})
+
+popupWithAddForm.setEventListeners();
+
+
+// лайки карточек
+function handleLikeCard(instance) {
+  api.changeLike(instance.getId(), instance.isLiked())
+    .then((res) => {
+      instance.setLikesData(res);
+    })
+    .catch(err => console.log(err));
+};
+
+
+/*   const popupWithAddForm = new PopupWithForm('.popup-add', (data) => {
+    const card = {
+      name: data['popup-image-name'],
+      link: data['popup-image-link']
+    };
+    section.addItem(createCard(card));
+    popupWithAddForm.close();
+  }) */
+/* 
 const popUpEdit = document.querySelector('.popup-edit');
 const popUpAdd = document.querySelector('.popup-add');
 const popUpImages = document.querySelector('.popup-images');
@@ -104,6 +157,26 @@ const inputPopupImageLink = document.querySelector('.popup__input_type_image-lin
 
 const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
+
+ const section = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      section.addItem(createCard(data));
+    }
+  },
+  '.elements__list'
+);
+section.renderItems(); 
+
+const popupWithEditForm = new PopupWithForm('.popup-edit', (data) => {
+  userInfo.setUserInfo({
+    name: data['popup-name'],
+    about: data['popup-activity']
+  });
+  popupWithEditForm.close()
+})
+popupWithEditForm.setEventListeners();
 
 
  function openPopup(popup) {
@@ -213,4 +286,4 @@ formElementAdd.addEventListener('submit', function (e) {
   cardSection.renderItems();
 
   closePopup(popUpAdd);
-}); */
+});  */
