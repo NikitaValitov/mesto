@@ -24,7 +24,7 @@ export class Api {
       .then(this.#onResponce)
   }
 
-  editingUserInfo(data) {
+  editUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -48,5 +48,22 @@ export class Api {
       headers: this._headers,
     })
     .then(this.#onResponce)
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+    .then(this.#onResponce);
+  }
+
+  editAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+    .then(this.#onResponce);
   }
 } 
