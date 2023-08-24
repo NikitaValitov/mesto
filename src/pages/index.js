@@ -175,8 +175,8 @@ function handleCardDelete(cardInstance) {
 //попап изменения аватарки 
 const popupWithAvatarForm = new PopupWithForm('.popup-avatar', (data) => {
   popupWithAvatarForm.renderLoading(true);
-  api.editAvatar({ avatar: data['link'] })
-    .then(userInfo.setUserAvatar({ avatar: data['link'] }))
+  api.editAvatar({ avatar: data['linkAvatar'] })
+    .then(userInfo.setUserAvatar({ avatar: data['linkAvatar'] }))
     .then(() => popupWithAvatarForm.close())
     .catch((err) => console.log(err))
     .finally(() => {
